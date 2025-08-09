@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function FriendshipButton({ profileUser, friendshipStatus, onAction }) {
   const sendFriendRequest = async () => {
     const token = localStorage.getItem('token');
-    await fetch('http://localhost:5000/api/friend-requests', {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/friend-requests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
