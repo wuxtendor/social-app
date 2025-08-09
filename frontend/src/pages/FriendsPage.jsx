@@ -13,9 +13,9 @@ function FriendsPage() {
 
     // Fetch all three lists in parallel
     const [friendsRes, incomingRes, sentRes] = await Promise.all([
-      fetch('http://localhost:5000/api/friends', { headers }),
-      fetch('http://localhost:5000/api/friend-requests', { headers }),
-      fetch('http://localhost:5000/api/friend-requests/sent', { headers })
+      fetch(`${import.meta.env.VITE_API_URL}/api/friends`, { headers }),
+      fetch(`${import.meta.env.VITE_API_URL}/api/friend-requests`, { headers }),
+      fetch(`${import.meta.env.VITE_API_URL}/api/friend-requests/sent`, { headers })
     ]);
 
     setFriends(await friendsRes.json());
@@ -29,7 +29,7 @@ function FriendsPage() {
 
   const handleRequest = async (requestId, newStatus) => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5000/api/friend-requests/${requestId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/friend-requests/${requestId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ status: newStatus }),

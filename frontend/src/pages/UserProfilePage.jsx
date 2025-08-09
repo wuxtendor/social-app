@@ -14,7 +14,7 @@ function CreatePostForm({ onPostCreated }) {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:5000/api/posts', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ content }),
@@ -61,9 +61,9 @@ function UserProfilePage() {
 
     // Fetch all necessary data in parallel for better performance
     const [userRes, postsRes, friendRes] = await Promise.all([
-      fetch(`http://localhost:5000/api/users/${id}`),
-      fetch(`http://localhost:5000/api/users/${id}/posts`, { headers }),
-      loggedInUser && !isOwnProfile ? fetch(`http://localhost:5000/api/friendship-status/${id}`, { headers }) : Promise.resolve(null)
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`),
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}/posts`, { headers }),
+      loggedInUser && !isOwnProfile ? fetch(`${import.meta.env.VITE_API_URL}/api/friendship-status/${id}`, { headers }) : Promise.resolve(null)
     ]);
 
     setProfileUser(await userRes.json());
@@ -101,7 +101,7 @@ function UserProfilePage() {
 
     // Send the actual request to the backend.
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${postId}/like`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
       });

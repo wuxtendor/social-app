@@ -8,7 +8,7 @@ function FeedPage() {
   const fetchFeed = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:5000/api/feed', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/feed`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (response.ok) {
@@ -43,7 +43,7 @@ function FeedPage() {
       })
     );
     try {
-      await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${postId}/like`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
       });

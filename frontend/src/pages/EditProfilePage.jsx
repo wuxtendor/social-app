@@ -17,7 +17,7 @@ function EditProfilePage() {
   useEffect(() => {
     // Make sure we have the logged-in user's info before fetching
     if (user) {
-      fetch(`http://localhost:5000/api/users/${user.userId}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.userId}`)
         .then(res => res.json())
         .then(data => {
           if (data) {
@@ -86,7 +86,7 @@ function EditProfilePage() {
     // Step 3: Send the updated data to our backend to save in the PostgreSQL database
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
         body: JSON.stringify(updatePayload),

@@ -15,7 +15,7 @@ export default function SocketProvider({ children }) {
   useEffect(() => {
     if (user) {
       // Ensure the URL is correct
-      const newSocket = io('http://localhost:5000'); 
+      const newSocket = io(import.meta.env.VITE_API_URL); 
       setSocket(newSocket);
 
       newSocket.emit('addUser', user.userId);

@@ -6,7 +6,7 @@ function UserListPage() {
 
   useEffect(() => {
     // Fetch the list of all users from our new endpoint
-    fetch('http://localhost:5000/api/users')
+    fetch(`${import.meta.env.VITE_API_URL}/api/users`)
       .then(res => res.json())
       .then(data => setUsers(data));
   }, []);

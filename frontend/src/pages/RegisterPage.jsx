@@ -65,7 +65,7 @@ function RegisterPage() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/check-email', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/check-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: formData.email }),
@@ -93,7 +93,7 @@ function RegisterPage() {
     const { confirmPassword, ...dataToSend } = formData;
 
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

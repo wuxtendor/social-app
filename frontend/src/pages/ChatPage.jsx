@@ -18,7 +18,7 @@ function ChatPage() {
     if (sender) {
       const fetchMessages = async () => {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/messages/${receiverId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/messages/${receiverId}`, {
           // This header is the crucial fix
           headers: {
             'Authorization': `Bearer ${token}`
