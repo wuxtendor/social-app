@@ -1,0 +1,177 @@
+.form-container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Align text to the left for a more modern feel */
+}
+
+.form-container h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 500; /* Slightly lighter font weight */
+  color: #333;
+  text-align: center; /* Center the heading */
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increase spacing between elements */
+}
+
+.form-container label {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 5px;
+  display: block; /* Ensure labels take full width */
+}
+
+/* Replace your existing input/textarea block with this */
+.form-container input,
+.form-container textarea {
+  padding: 14px;
+  font-size: 16px;
+  border: 2px solid #dbdbdb;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333; /* Color for user-typed text */
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* This new block targets the placeholder text specifically */
+.form-container ::placeholder {
+  color: #8e8e8e; /* Lighter color for placeholder text */
+  font-size: 16px; /* Ensure font size is consistent */
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #0095f6; /* Just change the border color on focus */
+  outline: none; /* Keep this to remove the default ugly outline */
+}
+
+.form-container textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-container button {
+  padding: 14px 20px;
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-container button:hover {
+  background-color: #0077c2;
+}
+
+.form-container .error-message {
+  color: #ff4d4f;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Add these new styles to the end of Form.css */
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%; /* Make sure the input still fills the space */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px; /* Position button inside the input field */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-weight: 600;
+  padding: 5px;
+}
+
+/* Styles for FriendRequestsPage.jsx */
+.requests-container {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.requests-list {
+  list-style: none;
+  padding: 0;
+}
+
+.request-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.request-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #262626;
+  font-weight: 600;
+}
+
+.request-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.request-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.request-actions .accept-btn {
+  background-color: #0095f6;
+  color: white;
+  margin-right: 10px;
+}
+
+.request-actions .reject-btn {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.friends-page-container {
+  max-width: 800px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.friends-section h2 {
+  border-bottom: 2px solid #0095f6;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}

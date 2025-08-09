@@ -1,0 +1,20 @@
+.app-header {
+  background-color: #ffffff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navigation a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #262626;
+  font-size: 16px;
+}

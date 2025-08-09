@@ -1,0 +1,88 @@
+// prisma/schema.prisma
+
+// This tells Prisma to use our PostgreSQL database
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// This tells Prisma how to generate its client
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Our User model
+model User {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  name        String
+  email       String   @unique
+  age         Int
+  description String?
+  avatar      String?
+  password    String
+  
+  // User's relationship to their posts and likes
+  posts       Post[]
+  likes       Like[]
+
+  // User's relationship to their friends (complex)
+  sentFriendRequests     Friendship[] @relation("sent_requests")
+  receivedFriendRequests Friendship[] @relation("received_requests")
+
+  sentMessages     Message[] @relation("sent_messages")
+  receivedMessages Message[] @relation("received_messages")
+}
+
+// Our Post model
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  
+  // Post's relationship to its author and likes
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  likes     Like[]
+}
+
+// Our Like model (a "join table" between User and Post)
+model Like {
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  // Ensures a user can only like a post once
+  @@unique([postId, userId])
+}
+
+// Our Friendship model (a "join table" for a many-to-many relationship on User)
+model Friendship {
+  id          Int    @id @default(autoincrement())
+  requester   User   @relation("sent_requests", fields: [requesterId], references: [id])
+  requesterId Int
+  addressee   User   @relation("received_requests", fields: [addresseeId], references: [id])
+  addresseeId Int
+  
+  // Status can be 'PENDING', 'ACCEPTED', or 'BLOCKED'
+  status      String @default("PENDING")
+  
+  createdAt   DateTime @default(now())
+
+  // Ensures a friendship request can only exist once between two people
+  @@unique([requesterId, addresseeId])
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  content    String
+
+  sender     User     @relation("sent_messages", fields: [senderId], references: [id])
+  senderId   Int
+
+  receiver   User     @relation("received_messages", fields: [receiverId], references: [id])
+  receiverId Int
+}
